@@ -24,4 +24,7 @@ model = tree.DecisionTreeClassifier()
 modelFit = model.fit(X,Y)
 
 # Make predictions
-pred = modelFit.predict(X)
+forecast = modelFit.predict(X)
+
+# convert to list
+pred = forecast.tolist()
