@@ -26,5 +26,6 @@ modelFit = model.fit(X,Y)
 # Make predictions
 forecast = modelFit.predict(X)
 
-# convert to list
+# convert to list and make proper length
 pred = forecast.tolist()
+pred = pred[:1000]
