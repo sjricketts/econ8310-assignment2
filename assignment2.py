@@ -25,7 +25,7 @@ yt = test_data['meal']
 xt = test_data.drop('meal', axis = 1)
 
 # generate random forest model
-model = RandomForestClassifier(n_estimators=100, n_jobs = -1, max_depth=10, random_state=42)
+model = RandomForestClassifier(n_estimators=100, n_jobs = -1, max_depth=10)
 
 # fit model
 modelFit = model.fit(X,Y)
