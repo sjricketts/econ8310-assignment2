@@ -3,7 +3,7 @@ import pandas as pd
 import numpy as np
 import patsy as pt
 
-import sklearn.tree as tree
+from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score
 from sklearn.model_selection import train_test_split
 
@@ -24,13 +24,14 @@ X = data.drop('meal', axis = 1)
 yt = test_data['meal']
 xt = test_data.drop('meal', axis = 1)
 
+# generate random forest model
+model = RandomForestClassifier(n_estimators=100, n_jobs = -1, max_depth=10, random_state=42)
 
-model = tree.DecisionTreeClassifier(max_depth=5, min_samples_leaf = 10)
-
+# fit model
 modelFit = model.fit(X,Y)
 
 # Make predictions
 forecast = modelFit.predict(xt)
 
-# convert to list and make proper length
+# convert to list
 pred = forecast.tolist()
