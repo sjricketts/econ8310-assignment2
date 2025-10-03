@@ -20,7 +20,7 @@ yt = test_data['meal']
 xt = test_data.drop('meal', axis = 1)
 
 # model
-model = XGBClassifier(n_estimators=15, max_depth=3,learning_rate=0.5, objective='binary:logistic', random_state=42)
+model = XGBClassifier(n_estimators=100, max_depth=3,learning_rate=0.5, objective='binary:logistic', random_state=42)
 
 # fit
 modelFit = model.fit(X, Y)
