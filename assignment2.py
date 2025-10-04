@@ -1,7 +1,6 @@
-# Our import statements for this problem
 import pandas as pd
 import numpy as np
-from sklearn.ensemble import RandomForestClassifier
+from xgboost import XGBClassifier
 
 # read in data
 data = pd.read_csv("https://raw.githubusercontent.com/dustywhite7/Econ8310/master/AssignmentData/assignment3.csv")
@@ -20,13 +19,17 @@ X = data.drop('meal', axis = 1)
 yt = test_data['meal']
 xt = test_data.drop('meal', axis = 1)
 
-# generate random forest model
-model = RandomForestClassifier(n_estimators=100, n_jobs=-1, max_depth=15, random_state=42)
+# scale_pos_weight
+# documentation: https://xgboosting.com/xgboost-configure-scale_pos_weight-parameter/
+spw = len(Y[Y == 0]) / len(Y[Y == 1])
 
-# fit model
-modelFit = model.fit(X,Y)
+# model
+model = XGBClassifier(n_estimators=100, max_depth=3,learning_rate=0.7, scale_pos_weight = spw, objective='binary:logistic', random_state=42)
 
-# Make predictions
+# fit
+modelFit = model.fit(X, Y)
+
+# Make predictions based on the testing x values
 forecast = modelFit.predict(xt)
 
 # convert to list
